@@ -102,6 +102,22 @@ function SearchResultsAll({ items, addToCart, user, loading }) {
                     Restock
                   </button>
                 )}
+                {/* Show high quantities when the user is admin */}
+                {user && user.role === "admin" && product.quantity >= 5 && (
+                  <span className="badge bg-success">
+                    Fully Stocked: {product.quantity} left
+                  </span>
+                )}
+                {/* Show low quantities when the user is logged in */}
+                {user && product.quantity >= 1 && product.quantity <= 4 && (
+                  <span className="badge bg-warning">
+                    Low Stock: {product.quantity} left
+                  </span>
+                )}
+                {/* Show out of stock quantities when the user is logged in */}
+                {user && product.quantity == 0 && (
+                  <span className="badge bg-danger">Out of Stock</span>
+                )}
               </div>
             </div>
           </div>
