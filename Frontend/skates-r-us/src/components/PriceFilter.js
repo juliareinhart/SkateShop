@@ -5,6 +5,8 @@ import "bootstrap/dist/js/bootstrap.bundle.min.js";
 import { Range } from "react-range";
 import applyFilters from "../utils/applyFilters"; // Import the applyFilters utility
 import SearchResultsAll from "./SearchResultsAll";
+import BrandsDropdown from "./BrandsDropdown";
+import DynamicDropdowns from "./DynamicDropdowns";
 import { useState, useEffect } from "react"; // Add `useEffect`
 
 function PriceFilter({ addToCart, user }) {
@@ -106,6 +108,7 @@ function PriceFilter({ addToCart, user }) {
           </div>
         </div>
       </form>
+      <BrandsDropdown />
       {/* Display Error Message */}
       {error && <div className="alert alert-danger mt-3">{error}</div>}
       {/* Render Search Results */}

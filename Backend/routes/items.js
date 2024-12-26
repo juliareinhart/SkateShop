@@ -344,11 +344,12 @@ router.get("/api/items/options", (req, res) => {
     Item.distinct("brand").exec(), // Fetch unique brands
     Item.distinct("color").exec(), // Fetch unique colors
     Item.distinct("typeOfItem").exec(),
+    Item.distinct("rating").exec(),
     // Add more fields as needed
   ])
-    .then(([brands, colors, typeOfItems]) => {
+    .then(([brands, colors, typeOfItems, ratings]) => {
       // Send the results back as JSON
-      res.status(200).json({ brands, colors, typeOfItems });
+      res.status(200).json({ brands, colors, typeOfItems, ratings });
     })
     .catch((err) => {
       res.status(500).send(err); // Handle any errors
