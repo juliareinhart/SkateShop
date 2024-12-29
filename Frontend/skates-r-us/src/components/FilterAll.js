@@ -56,7 +56,7 @@ function FilterAll({ addToCart, user }) {
 
   useEffect(() => {
     fetchItems(); // Fetch items whenever price range or selected brands change
-  }, [values, selectedBrands]);
+  }, [selectedBrands]);
 
   // Handle Go Button Click
   const handleGoClick = () => {
