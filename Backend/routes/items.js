@@ -274,6 +274,31 @@ router.get("/api/items", (req, res) => {
     };
   }
 
+  // Handle brand filtering (Corrected)
+  if (req.query.brand) {
+    // Check for 'brand' (singular)
+    let brands = req.query.brand;
+
+    if (typeof brands === "string") {
+      brands = [brands]; // Convert single brand to array
+    } else if (Array.isArray(brands)) {
+      // It's already an array, no changes needed.
+    } else {
+      return res.status(400).send({ error: "Invalid brand format" });
+    }
+    filter.brand = { $in: brands };
+  }
+
+  // Handle generic JSON filter (for more complex filtering)
+  if (req.query.filter) {
+    try {
+      const parsedFilter = JSON.parse(req.query.filter);
+      filter = { ...filter, ...parsedFilter }; // Merge parsed filter with existing filters
+    } catch (err) {
+      return res.status(400).send({ error: "Invalid filter format" });
+    }
+  }
+
   // Run query with filters, sort, limit, and skip options
   Item.find(filter)
     .exec()

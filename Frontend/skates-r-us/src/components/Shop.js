@@ -3,7 +3,7 @@ import React from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap/dist/js/bootstrap.bundle.min.js";
 import SearchBar from "./SearchBar";
-import PriceFilter from "./PriceFilter";
+import FilterAll from "./FilterAll";
 //import FilterDropdown from './components/FilterDropdown';
 //import PriceSlider from './components/PriceSlider';
 import SearchResultsAll from "./SearchResultsAll";
@@ -20,7 +20,7 @@ function Shop({ addToCart, user }) {
         {/* Route for Shop */}
         <Route
           path="/shop"
-          element={<PriceFilter addToCart={addToCart} user={user} />}
+          element={<FilterAll addToCart={addToCart} user={user} />}
         />
       </Routes>
     </div>

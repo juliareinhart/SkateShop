@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 
-function BrandsDropdown({ onBrandSelect }) {
+function BrandsDropdown({ onBrandSelect, selectedBrands }) {
   const [error, setError] = useState("");
   const [brands, setBrands] = useState([]);
   const [typeOfItems, setTypeOfItems] = useState([]);
@@ -28,6 +28,19 @@ function BrandsDropdown({ onBrandSelect }) {
   useEffect(() => {
     fetchOptions();
   }, []);
+
+  // Handle checkbox changes
+  const handleCheckboxChange = (e) => {
+    const { value, checked } = e.target;
+
+    if (checked) {
+      // Add the selected brand
+      onBrandSelect([...selectedBrands, value]);
+    } else {
+      // Remove the unselected brand
+      onBrandSelect(selectedBrands.filter((brand) => brand !== value));
+    }
+  };
 
   return (
     <div className="container mt-2">
@@ -60,6 +73,8 @@ function BrandsDropdown({ onBrandSelect }) {
                       name="group1"
                       id={`option1-${index + 1}`}
                       value={brand}
+                      onChange={handleCheckboxChange}
+                      checked={selectedBrands.includes(brand)} // Sync checked state with parent's state
                     />
                     <label className="ms-2" htmlFor={`option1-${index + 1}`}>
                       {brand}

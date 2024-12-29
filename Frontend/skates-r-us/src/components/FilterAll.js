@@ -6,13 +6,13 @@ import { Range } from "react-range";
 import applyFilters from "../utils/applyFilters"; // Import the applyFilters utility
 import SearchResultsAll from "./SearchResultsAll";
 import BrandsDropdown from "./BrandsDropdown";
-import DynamicDropdowns from "./DynamicDropdowns";
 import { useState, useEffect } from "react"; // Add `useEffect`
 
-function PriceFilter({ addToCart, user }) {
+function FilterAll({ addToCart, user }) {
   console.log("User in PriceFilter.js:", user); // Debugging
   const [values, setValues] = useState([40, 300]);
   const [filteredItems, setFilteredItems] = useState([]); // Filtered items from web service
+  const [selectedBrands, setSelectedBrands] = useState([]); // Selected brands
   const [error, setError] = useState(""); // For handling errors
   const [loading, setLoading] = useState(true); // Track loading state
 
@@ -21,20 +21,30 @@ function PriceFilter({ addToCart, user }) {
   const MAX = 300;
 
   // Fetch items based on the current price range
-  const fetchItems = (priceRange) => {
+  const fetchItems = (priceRange = values) => {
     const filters = {
       minPrice: priceRange[0],
       maxPrice: priceRange[1],
+      selectedBrands,
     };
+
+    console.log("Filters being sent to applyFilters:", filters); // Debug the filters object
+
+    setLoading(true); // Set loading to true before fetching items
 
     return applyFilters(filters) //need to return a promise so that can use finally to set loading state to false
       .then((data) => {
+        console.log("Data received from applyFilters:", data); // Debug the API response
         setFilteredItems(data);
         setError("");
       })
       .catch((err) => {
-        console.error("Error fetching items:", err);
-        setError("An error occurred while fetching filtered items.");
+        console.error("Error in applyFilters:", err);
+        setError("An error occurred while fetching filtered items."); // Ensure loading is false after fetch
+      })
+      .finally(() => {
+        setLoading(false);
+        console.log("Loading state set to false"); // Debug loading state
       });
   };
 
@@ -44,9 +54,18 @@ function PriceFilter({ addToCart, user }) {
     fetchItems(values).finally(() => setLoading(false)); // Ensure loading is false after fetch;
   }, []);
 
+  useEffect(() => {
+    fetchItems(); // Fetch items whenever price range or selected brands change
+  }, [values, selectedBrands]);
+
   // Handle Go Button Click
   const handleGoClick = () => {
     fetchItems(values);
+  };
+
+  // Update selected brands when changed in BrandsDropdown
+  const handleBrandSelect = (brands) => {
+    setSelectedBrands(brands); // Update the selected brands
   };
 
   console.log("addToCart passed to SearchResultsAll:", addToCart);
@@ -108,18 +127,27 @@ function PriceFilter({ addToCart, user }) {
           </div>
         </div>
       </form>
-      <BrandsDropdown />
+      <BrandsDropdown
+        onBrandSelect={setSelectedBrands}
+        selectedBrands={selectedBrands}
+      />
       {/* Display Error Message */}
       {error && <div className="alert alert-danger mt-3">{error}</div>}
       {/* Render Search Results */}
-      <SearchResultsAll
-        items={filteredItems}
-        addToCart={addToCart}
-        user={user}
-        loading={loading}
-      />
+      {loading ? (
+        <p>Loading items...</p>
+      ) : error ? (
+        <div className="alert alert-danger">{error}</div>
+      ) : (
+        <SearchResultsAll
+          items={filteredItems}
+          addToCart={addToCart}
+          user={user}
+          loading={loading}
+        />
+      )}
     </div>
   );
 }
 
-export default PriceFilter;
+export default FilterAll;
