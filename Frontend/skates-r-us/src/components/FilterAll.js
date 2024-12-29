@@ -14,6 +14,9 @@ function FilterAll({ addToCart, user }) {
   const [values, setValues] = useState([40, 300]);
   const [filteredItems, setFilteredItems] = useState([]); // Filtered items from web service
   const [selectedBrands, setSelectedBrands] = useState([]); // Selected brands
+  const [selectedTypeOfItems, setSelectedTypeOfItems] = useState([]); // Selected brands
+  const [selectedColors, setSelectedColors] = useState([]); // Selected brands
+  const [selectedRatings, setSelectedRatings] = useState([]); // Selected brands
   const [error, setError] = useState(""); // For handling errors
   const [loading, setLoading] = useState(true); // Track loading state
   const [availableBrands, setAvailableBrands] = useState([]); // Store available brands
@@ -31,6 +34,9 @@ function FilterAll({ addToCart, user }) {
       minPrice: priceRange[0],
       maxPrice: priceRange[1],
       selectedBrands,
+      selectedTypeOfItems,
+      selectedColors,
+      selectedRatings,
     };
 
     console.log("Filters being sent to applyFilters:", filters); // Debug the filters object
@@ -74,7 +80,7 @@ function FilterAll({ addToCart, user }) {
 
   useEffect(() => {
     fetchItems(); // Fetch items whenever price range or selected brands change
-  }, [selectedBrands]);
+  }, [selectedBrands, selectedTypeOfItems, selectedColors, selectedRatings]);
 
   // Handle Go Button Click
   const handleGoClick = async () => {
@@ -85,6 +91,21 @@ function FilterAll({ addToCart, user }) {
   // Update selected brands when changed in BrandsDropdown
   const handleBrandSelect = (brands) => {
     setSelectedBrands(brands); // Update the selected brands
+  };
+
+  // Update selected brands when changed in BrandsDropdown
+  const handleTypeOfItemSelect = (typeOfItems) => {
+    setSelectedTypeOfItems(typeOfItems); // Update the selected brands
+  };
+
+  // Update selected brands when changed in BrandsDropdown
+  const handleColorSelect = (colors) => {
+    setSelectedColors(colors); // Update the selected brands
+  };
+
+  // Update selected brands when changed in BrandsDropdown
+  const handleRatingSelect = (ratings) => {
+    setSelectedRatings(ratings); // Update the selected brands
   };
 
   // Function to fetch options from the backend
@@ -167,6 +188,12 @@ function FilterAll({ addToCart, user }) {
       <BrandsDropdown
         onBrandSelect={setSelectedBrands}
         selectedBrands={selectedBrands}
+        onTypeOfItemSelect={setSelectedTypeOfItems}
+        selectedTypeOfItems={selectedTypeOfItems}
+        onColorSelect={setSelectedColors}
+        selectedColors={selectedColors}
+        onRatingSelect={setSelectedRatings}
+        selectedRatings={selectedRatings}
         availableBrands={availableBrands}
         availableTypeOfItems={availableTypeOfItems}
         availableColors={availableColors}

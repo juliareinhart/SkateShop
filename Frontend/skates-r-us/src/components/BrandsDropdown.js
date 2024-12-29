@@ -4,6 +4,12 @@ import axios from "axios";
 function BrandsDropdown({
   onBrandSelect,
   selectedBrands,
+  onTypeOfItemSelect,
+  selectedTypeOfItems,
+  onColorSelect,
+  selectedColors,
+  onRatingSelect,
+  selectedRatings,
   availableBrands,
   availableTypeOfItems,
   availableColors,
@@ -12,15 +18,42 @@ function BrandsDropdown({
   const [error, setError] = useState("");
 
   // Handle checkbox changes
-  const handleCheckboxChange = (e) => {
+  const handleBrandCheckboxChange = (e) => {
     const { value, checked } = e.target;
-
     if (checked) {
-      // Add the selected brand
-      onBrandSelect([...selectedBrands, value]);
+      onBrandSelect([...selectedBrands, value]); // Add the selected brand
     } else {
-      // Remove the unselected brand
-      onBrandSelect(selectedBrands.filter((brand) => brand !== value));
+      onBrandSelect(selectedBrands.filter((brand) => brand !== value)); // Remove the unselected brand
+    }
+  };
+
+  const handleTypeOfItemCheckboxChange = (e) => {
+    const { value, checked } = e.target;
+    if (checked) {
+      onTypeOfItemSelect([...selectedTypeOfItems, value]); // Add the selected type of item
+    } else {
+      onTypeOfItemSelect(selectedTypeOfItems.filter((type) => type !== value)); // Remove the unselected type
+    }
+  };
+
+  const handleColorCheckboxChange = (e) => {
+    const { value, checked } = e.target;
+    if (checked) {
+      onColorSelect([...selectedColors, value]); // Add the selected color
+    } else {
+      onColorSelect(selectedColors.filter((color) => color !== value)); // Remove the unselected color
+    }
+  };
+
+  const handleRatingCheckboxChange = (e) => {
+    const { value, checked } = e.target;
+    const ratingValue = parseFloat(value); // Convert value to a number
+    if (checked) {
+      onRatingSelect([...selectedRatings, ratingValue]); // Add the selected rating
+    } else {
+      onRatingSelect(
+        selectedRatings.filter((rating) => rating !== ratingValue)
+      ); // Remove the unselected rating
     }
   };
 
@@ -55,7 +88,7 @@ function BrandsDropdown({
                       name="group1"
                       id={`option1-${index + 1}`}
                       value={brand}
-                      onChange={handleCheckboxChange}
+                      onChange={handleBrandCheckboxChange}
                       checked={selectedBrands.includes(brand)} // Sync checked state with parent's state
                     />
                     <label className="ms-2" htmlFor={`option1-${index + 1}`}>
@@ -94,6 +127,8 @@ function BrandsDropdown({
                       name="group2"
                       id={`type-option-${index + 1}`}
                       value={type}
+                      onChange={handleTypeOfItemCheckboxChange}
+                      checked={selectedTypeOfItems.includes(type)} // Sync checked state with parent's state
                     />
                     <label
                       className="ms-2"
@@ -134,6 +169,8 @@ function BrandsDropdown({
                       name="group3"
                       id={`color-option-${index + 1}`}
                       value={color}
+                      onChange={handleColorCheckboxChange}
+                      checked={selectedColors.includes(color)} // Sync checked state with parent's state
                     />
                     <label
                       className="ms-2"
@@ -174,6 +211,8 @@ function BrandsDropdown({
                       name="group3"
                       id={`rating-option-${index + 1}`}
                       value={rating}
+                      onChange={handleRatingCheckboxChange}
+                      checked={selectedRatings.includes(rating)} // Sync checked state with parent's state
                     />
                     <label
                       className="ms-2"

@@ -289,6 +289,51 @@ router.get("/api/items", (req, res) => {
     filter.brand = { $in: brands };
   }
 
+  // Handle brand filtering (Corrected)
+  if (req.query.typeOfItem) {
+    // Check for 'brand' (singular)
+    let typeOfItems = req.query.typeOfItem;
+
+    if (typeof typeOfItems === "string") {
+      typeOfItems = [typeOfItems]; // Convert single brand to array
+    } else if (Array.isArray(typeOfItems)) {
+      // It's already an array, no changes needed.
+    } else {
+      return res.status(400).send({ error: "Invalid typeOfItems format" });
+    }
+    filter.typeOfItem = { $in: typeOfItems };
+  }
+
+  // Handle brand filtering (Corrected)
+  if (req.query.color) {
+    // Check for 'brand' (singular)
+    let colors = req.query.color;
+
+    if (typeof colors === "string") {
+      colors = [colors]; // Convert single brand to array
+    } else if (Array.isArray(colors)) {
+      // It's already an array, no changes needed.
+    } else {
+      return res.status(400).send({ error: "Invalid colors format" });
+    }
+    filter.color = { $in: colors };
+  }
+
+  // Handle brand filtering (Corrected)
+  if (req.query.rating) {
+    // Check for 'brand' (singular)
+    let ratings = req.query.rating;
+
+    if (typeof ratings === "string") {
+      ratings = [ratings]; // Convert single brand to array
+    } else if (Array.isArray(ratings)) {
+      // It's already an array, no changes needed.
+    } else {
+      return res.status(400).send({ error: "Invalid brand format" });
+    }
+    filter.rating = { $in: ratings };
+  }
+
   // Handle generic JSON filter (for more complex filtering)
   if (req.query.filter) {
     try {
