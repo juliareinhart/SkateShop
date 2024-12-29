@@ -364,12 +364,23 @@ Item.aggregate([{ $group: { _id: "$color" } }])
 
 // Example endpoint to get unique brands and colors using Promises
 router.get("/api/items/options", (req, res) => {
+  // Extract minPrice and maxPrice from query parameters
+  const { minPrice, maxPrice } = req.query;
+
+  // Create a filter object based on query parameters
+  const filter = {};
+  if (minPrice && maxPrice) {
+    filter.price = {
+      $gte: parseFloat(minPrice), // Greater than or equal to minPrice
+      $lte: parseFloat(maxPrice), // Less than or equal to maxPrice
+    };
+  }
   // Use Promise.all to fetch multiple distinct values concurrently
   Promise.all([
-    Item.distinct("brand").exec(), // Fetch unique brands
-    Item.distinct("color").exec(), // Fetch unique colors
-    Item.distinct("typeOfItem").exec(),
-    Item.distinct("rating").exec(),
+    Item.distinct("brand", filter).exec(), // Fetch unique brands
+    Item.distinct("color", filter).exec(), // Fetch unique colors
+    Item.distinct("typeOfItem", filter).exec(),
+    Item.distinct("rating", filter).exec(),
     // Add more fields as needed
   ])
     .then(([brands, colors, typeOfItems, ratings]) => {
@@ -377,6 +388,7 @@ router.get("/api/items/options", (req, res) => {
       res.status(200).json({ brands, colors, typeOfItems, ratings });
     })
     .catch((err) => {
+      console.error("Error fetching distinct options:", err);
       res.status(500).send(err); // Handle any errors
     });
 });

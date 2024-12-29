@@ -1,33 +1,15 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 
-function BrandsDropdown({ onBrandSelect, selectedBrands }) {
+function BrandsDropdown({
+  onBrandSelect,
+  selectedBrands,
+  availableBrands,
+  availableTypeOfItems,
+  availableColors,
+  availableRatings,
+}) {
   const [error, setError] = useState("");
-  const [brands, setBrands] = useState([]);
-  const [typeOfItems, setTypeOfItems] = useState([]);
-  const [colors, setColors] = useState([]);
-  const [ratings, setRatings] = useState([]);
-
-  // Function to fetch options from the backend
-  const fetchOptions = async () => {
-    try {
-      const response = await axios.get(
-        "http://localhost:9000/api/items/options"
-      ); // Adjust endpoint if needed
-      const data = response.data;
-      setBrands(data.brands);
-      setTypeOfItems(data.typeOfItems);
-      setColors(data.colors);
-      setRatings(data.ratings);
-    } catch (error) {
-      console.error("Error fetching options:", error);
-    }
-  };
-
-  // Fetch options when the component loads
-  useEffect(() => {
-    fetchOptions();
-  }, []);
 
   // Handle checkbox changes
   const handleCheckboxChange = (e) => {
@@ -64,7 +46,7 @@ function BrandsDropdown({ onBrandSelect, selectedBrands }) {
               aria-labelledby="dropdownMenu1"
             >
               {/* Options will be populated here dynamically */}
-              {brands.map((brand, index) => (
+              {availableBrands.map((brand, index) => (
                 <li key={index}>
                   <div className="d-flex align-items-center ms-3">
                     <input
@@ -103,7 +85,7 @@ function BrandsDropdown({ onBrandSelect, selectedBrands }) {
               aria-labelledby="dropdownMenu2"
             >
               {/* Options will be populated here dynamically */}
-              {typeOfItems.map((type, index) => (
+              {availableTypeOfItems.map((type, index) => (
                 <li key={index}>
                   <div className="d-flex align-items-center ms-3">
                     <input
@@ -143,7 +125,7 @@ function BrandsDropdown({ onBrandSelect, selectedBrands }) {
               aria-labelledby="dropdownMenu3"
             >
               {/* Options will be populated here dynamically */}
-              {colors.map((color, index) => (
+              {availableColors.map((color, index) => (
                 <li key={index}>
                   <div className="d-flex align-items-center ms-3">
                     <input
@@ -183,7 +165,7 @@ function BrandsDropdown({ onBrandSelect, selectedBrands }) {
               aria-labelledby="dropdownMenu4"
             >
               {/* Options will be populated here dynamically */}
-              {ratings.map((rating, index) => (
+              {availableRatings.map((rating, index) => (
                 <li key={index}>
                   <div className="d-flex align-items-center ms-3">
                     <input

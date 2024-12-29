@@ -7,6 +7,7 @@ import applyFilters from "../utils/applyFilters"; // Import the applyFilters uti
 import SearchResultsAll from "./SearchResultsAll";
 import BrandsDropdown from "./BrandsDropdown";
 import { useState, useEffect } from "react"; // Add `useEffect`
+import axios from "axios";
 
 function FilterAll({ addToCart, user }) {
   console.log("User in PriceFilter.js:", user); // Debugging
@@ -15,6 +16,10 @@ function FilterAll({ addToCart, user }) {
   const [selectedBrands, setSelectedBrands] = useState([]); // Selected brands
   const [error, setError] = useState(""); // For handling errors
   const [loading, setLoading] = useState(true); // Track loading state
+  const [availableBrands, setAvailableBrands] = useState([]); // Store available brands
+  const [availableTypeOfItems, setAvailableTypeOfItems] = useState([]);
+  const [availableColors, setAvailableColors] = useState([]);
+  const [availableRatings, setAvailableRatings] = useState([]);
 
   const STEP = 1;
   const MIN = 40;
@@ -48,24 +53,56 @@ function FilterAll({ addToCart, user }) {
       });
   };
 
-  // Fetch default items within the price range when the component loads
   useEffect(() => {
-    setLoading(true); // Set loading to true before fetching items
-    fetchItems(values).finally(() => setLoading(false)); // Ensure loading is false after fetch;
-  }, []);
+    const initializeData = async () => {
+      try {
+        setLoading(true); // Start loading
+        await fetchItems(values); // Fetch initial items
+        await fetchAvailableOptions(
+          `minPrice=${values[0]}&maxPrice=${values[1]}`
+        ); // Fetch initial dropdown options
+      } catch (error) {
+        console.error("Error initializing data:", error);
+        setError("An error occurred while loading data."); // Handle error
+      } finally {
+        setLoading(false); // End loading
+      }
+    };
+
+    initializeData(); // Call the async function
+  }, []); // Empty dependency array ensures this runs only once on mount
 
   useEffect(() => {
     fetchItems(); // Fetch items whenever price range or selected brands change
   }, [selectedBrands]);
 
   // Handle Go Button Click
-  const handleGoClick = () => {
-    fetchItems(values);
+  const handleGoClick = async () => {
+    await fetchItems(values);
+    await fetchAvailableOptions(`minPrice=${values[0]}&maxPrice=${values[1]}`); // Fetch available options based on price range
   };
 
   // Update selected brands when changed in BrandsDropdown
   const handleBrandSelect = (brands) => {
     setSelectedBrands(brands); // Update the selected brands
+  };
+
+  // Function to fetch options from the backend
+  const fetchAvailableOptions = async (filters) => {
+    try {
+      // Build the query string manually
+      const queryString = `?${new URLSearchParams(filters).toString()}`;
+      const response = await axios.get(
+        `http://localhost:9000/api/items/options${queryString}`
+      ); // Adjust endpoint if needed
+      const data = response.data;
+      setAvailableBrands(data.brands);
+      setAvailableTypeOfItems(data.typeOfItems);
+      setAvailableColors(data.colors);
+      setAvailableRatings(data.ratings);
+    } catch (error) {
+      console.error("Error fetching options:", error);
+    }
   };
 
   console.log("addToCart passed to SearchResultsAll:", addToCart);
@@ -130,6 +167,10 @@ function FilterAll({ addToCart, user }) {
       <BrandsDropdown
         onBrandSelect={setSelectedBrands}
         selectedBrands={selectedBrands}
+        availableBrands={availableBrands}
+        availableTypeOfItems={availableTypeOfItems}
+        availableColors={availableColors}
+        availableRatings={availableRatings}
       />
       {/* Display Error Message */}
       {error && <div className="alert alert-danger mt-3">{error}</div>}
