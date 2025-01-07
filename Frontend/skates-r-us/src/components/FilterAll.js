@@ -130,6 +130,14 @@ function FilterAll({ addToCart, user }) {
 
   console.log("User in Shop.js:", user);
 
+  const updateItemQuantity = (productId, newQuantity) => {
+    setFilteredItems((prevItems) =>
+      prevItems.map((item) =>
+        item._id === productId ? { ...item, quantity: newQuantity } : item
+      )
+    );
+  };
+
   return (
     <div className="container alert alert-light mt-3">
       <form>
@@ -214,6 +222,7 @@ function FilterAll({ addToCart, user }) {
           addToCart={addToCart}
           user={user}
           loading={loading}
+          updateItemQuantity={updateItemQuantity}
         />
       )}
     </div>

@@ -4,7 +4,13 @@ import "bootstrap/dist/js/bootstrap.bundle.min.js";
 import { useState } from "react"; // Add useState import
 import axios from "axios";
 
-function SearchResultsAll({ items, addToCart, user, loading }) {
+function SearchResultsAll({
+  items,
+  addToCart,
+  user,
+  loading,
+  updateItemQuantity,
+}) {
   const [notification, setNotification] = useState(null); // Track the product ID for the alert
   const [restockNotification, setRestockNotification] = useState(null); // Track the product ID for the alert
 
@@ -42,6 +48,10 @@ function SearchResultsAll({ items, addToCart, user, loading }) {
       await axios.patch(`http://localhost:9000/api/items/${product._id}`, {
         quantity: newQuantity,
       });
+
+      // Call the parent's update function to update the quantity
+      updateItemQuantity(product._id, newQuantity);
+
       setRestockNotification(product._id); // Set the notification for the product ID
       setTimeout(() => setRestockNotification(null), 1000); // Clear the notification after 1 second
       //alert(`${product.title} was restocked successfully.`);
