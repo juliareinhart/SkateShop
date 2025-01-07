@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import axios from "axios";
 
 function Cart({
@@ -10,6 +10,17 @@ function Cart({
   saveCartToDB,
   setCartItems,
 }) {
+  const [alerts, setAlerts] = useState([]); // State to manage alert messages
+
+  const addAlert = (message, type = "danger") => {
+    setAlerts((prevAlerts) => [...prevAlerts, { message, type }]);
+    setTimeout(() => {
+      setAlerts((prevAlerts) =>
+        prevAlerts.filter((alert) => alert.message !== message)
+      );
+    }, 7000);
+  };
+
   const total = cartItems.reduce(
     (sum, item) => sum + (item.price || 0) * item.quantity,
     0
@@ -17,7 +28,7 @@ function Cart({
 
   const handleCheckout = async () => {
     if (!user) {
-      alert("Please log in to proceed to checkout.");
+      addAlert("Please log in to proceed to checkout.");
       return;
     }
 
@@ -26,7 +37,7 @@ function Cart({
     // Ensure balance is sufficient before proceeding
     const newBalance = balance - totalPurchaseAmount;
     if (newBalance < 0) {
-      alert("Insufficient balance to complete the purchase.");
+      addAlert("Insufficient balance to complete the purchase.");
       return;
     }
 
@@ -45,7 +56,7 @@ function Cart({
           //quantity: newQuantity,
           //});
         } else {
-          alert(
+          addAlert(
             `Item "${item.title}" is out of stock or insufficient quantity. Current stock: ${currentQuantity}`
           );
           errorMessagesForLowStock.push(
@@ -91,7 +102,7 @@ function Cart({
 
     // Proceed to update balance and clear the cart
     await updateBalance(newBalance);
-    alert("Purchase successful!");
+    addAlert("Purchase successful!", "success");
     clearCart();
   };
 
@@ -158,7 +169,7 @@ function Cart({
           });
         } else {
           // Notify the user that the item is out of stock
-          alert(
+          addAlert(
             `Item "${item.title}" is out of stock. Current stock: ${currentQuantity}`
           );
           throw new Error("Insufficient stock.");
@@ -230,6 +241,28 @@ function Cart({
       ) : (
         <p className="text-muted">Your cart is empty.</p>
       )}
+      <div className="mt-4">
+        {alerts.map((alert, index) => (
+          <div
+            key={index}
+            className={`alert alert-${alert.type} alert-dismissible fade show`}
+            role="alert"
+          >
+            {alert.message}
+            <button
+              type="button"
+              className="btn-close"
+              data-bs-dismiss="alert"
+              aria-label="Close"
+              onClick={() =>
+                setAlerts((prevAlerts) =>
+                  prevAlerts.filter((_, i) => i !== index)
+                )
+              }
+            ></button>
+          </div>
+        ))}
+      </div>
     </div>
   );
 }
