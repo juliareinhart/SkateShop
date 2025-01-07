@@ -203,7 +203,9 @@ function FilterAll({ addToCart, user }) {
       {error && <div className="alert alert-danger mt-3">{error}</div>}
       {/* Render Search Results */}
       {loading ? (
-        <p>Loading items...</p>
+        <div className="container alert alert-secondary mt-3 mb-0">
+          <p>Loading items...</p>
+        </div>
       ) : error ? (
         <div className="alert alert-danger">{error}</div>
       ) : (

@@ -12,6 +12,7 @@ import Login from "./components/Login";
 import Shop from "./components/Shop";
 import Cart from "./components/Cart";
 import Register from "./components/Register";
+import AIChat from "./components/AIChat";
 import EnableTooltips from "./components/EnableTooltips"; // Import the EnableTooltips component
 import axios from "axios";
 import Checkout from "./components/Checkout"; // Import Checkout component
@@ -187,6 +188,7 @@ function App() {
             />
           }
         />
+        <Route path="/AIChat" element={<AIChat />} />
       </Routes>
     </Router>
   );

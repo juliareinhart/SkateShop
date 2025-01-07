@@ -5,6 +5,7 @@ const mongoose = require("mongoose");
 const cors = require("cors");
 const itemRoutes = require("./routes/items.js");
 const userRoutes = require("./routes/users.js");
+const askOllamaRoutes = require("./routes/askOllama.js");
 //change one to see github
 
 // Create the Express app instance
@@ -22,6 +23,7 @@ app.use(express.static("./public"));
 
 app.use("", itemRoutes);
 app.use("/api/user", userRoutes);
+app.use("", askOllamaRoutes);
 
 // This Middleware automatically converts JSON POST/PATCH requests to an object and stores that
 // object in the req.body

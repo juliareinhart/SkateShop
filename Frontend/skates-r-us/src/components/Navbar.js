@@ -51,6 +51,11 @@ function Navbar({ user, onLogout }) {
                 </Link>
               </li>
               <li className="nav-item">
+                <Link className="nav-link" to="/AIChat">
+                  AI Chat
+                </Link>
+              </li>
+              <li className="nav-item">
                 {user ? (
                   <>
                     <span className="nav-link">Welcome, {user.firstName}</span>{" "}
