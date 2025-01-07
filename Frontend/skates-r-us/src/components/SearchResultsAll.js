@@ -11,6 +11,7 @@ function SearchResultsAll({
   loading,
   updateItemQuantity,
   cartItems,
+  removeAllFromCart,
 }) {
   const [notification, setNotification] = useState(null); // Track the product ID for the alert
   const [restockNotification, setRestockNotification] = useState(null); // Track the product ID for the alert
@@ -141,7 +142,7 @@ function SearchResultsAll({
                       </span>
                       <button
                         className="btn btn-sm btn-outline-danger ms-2"
-                        //onClick={() => removeAllFromCart(product._id)}
+                        onClick={() => removeAllFromCart(product._id)}
                       >
                         Remove All
                       </button>

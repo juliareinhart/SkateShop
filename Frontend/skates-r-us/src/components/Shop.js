@@ -11,7 +11,7 @@ import { useState } from "react";
 import { Routes, Route } from "react-router-dom";
 import Cart from "./Cart";
 
-function Shop({ addToCart, user, cartItems }) {
+function Shop({ addToCart, user, cartItems, removeAllFromCart }) {
   console.log("User in Shop.js:", user);
 
   return (
@@ -25,6 +25,7 @@ function Shop({ addToCart, user, cartItems }) {
               addToCart={addToCart}
               user={user}
               cartItems={cartItems}
+              removeAllFromCart={removeAllFromCart}
             />
           }
         />

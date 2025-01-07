@@ -132,6 +132,16 @@ function App() {
       });
   };
 
+  const removeAllFromCart = (productId) => {
+    setCartItems((prevCart) => {
+      const updatedCart = prevCart.filter((item) => item._id !== productId); // Remove the product
+      saveCartToDB(updatedCart) // Save the updated cart to the database
+        .then(() => console.log("Cart updated in backend"))
+        .catch((err) => console.error("Error updating cart in backend:", err));
+      return updatedCart; // Update the local cart state
+    });
+  };
+
   return (
     <Router>
       <EnableTooltips /> {/* Initialize Bootstrap tooltips */}
@@ -160,6 +170,7 @@ function App() {
               saveCartToDB={saveCartToDB}
               fetchCartAndBalance={fetchCartAndBalance}
               cartItems={cartItems}
+              removeAllFromCart={removeAllFromCart}
             />
           }
         />
