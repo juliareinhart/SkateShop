@@ -6,6 +6,7 @@ import axios from "axios";
 
 function SearchResultsAll({ items, addToCart, user, loading }) {
   const [notification, setNotification] = useState(null); // Track the product ID for the alert
+  const [restockNotification, setRestockNotification] = useState(null); // Track the product ID for the alert
 
   // Log rendering for debugging
   console.log("SearchResultsAll rendered", { items });
@@ -41,7 +42,9 @@ function SearchResultsAll({ items, addToCart, user, loading }) {
       await axios.patch(`http://localhost:9000/api/items/${product._id}`, {
         quantity: newQuantity,
       });
-      alert(`${product.title} was restocked successfully.`);
+      setRestockNotification(product._id); // Set the notification for the product ID
+      setTimeout(() => setRestockNotification(null), 1000); // Clear the notification after 1 second
+      //alert(`${product.title} was restocked successfully.`);
     } catch (error) {
       console.error(error.message);
     }
@@ -90,6 +93,11 @@ function SearchResultsAll({ items, addToCart, user, loading }) {
                 {notification === product._id && (
                   <div className="alert alert-success mt-2" role="alert">
                     Added to cart!
+                  </div>
+                )}
+                {restockNotification === product._id && (
+                  <div className="alert alert-success mt-2" role="alert">
+                    Item Restocked.
                   </div>
                 )}
                 {/* Render Restock button only if the user is admin */}
