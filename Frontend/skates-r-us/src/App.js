@@ -159,6 +159,7 @@ function App() {
               balance={balance}
               saveCartToDB={saveCartToDB}
               fetchCartAndBalance={fetchCartAndBalance}
+              cartItems={cartItems}
             />
           }
         />

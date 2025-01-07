@@ -9,7 +9,7 @@ import BrandsDropdown from "./BrandsDropdown";
 import { useState, useEffect } from "react"; // Add `useEffect`
 import axios from "axios";
 
-function FilterAll({ addToCart, user }) {
+function FilterAll({ addToCart, user, cartItems }) {
   console.log("User in PriceFilter.js:", user); // Debugging
   const [values, setValues] = useState([40, 300]);
   const [filteredItems, setFilteredItems] = useState([]); // Filtered items from web service
@@ -223,6 +223,7 @@ function FilterAll({ addToCart, user }) {
           user={user}
           loading={loading}
           updateItemQuantity={updateItemQuantity}
+          cartItems={cartItems}
         />
       )}
     </div>

@@ -11,7 +11,7 @@ import { useState } from "react";
 import { Routes, Route } from "react-router-dom";
 import Cart from "./Cart";
 
-function Shop({ addToCart, user }) {
+function Shop({ addToCart, user, cartItems }) {
   console.log("User in Shop.js:", user);
 
   return (
@@ -20,7 +20,13 @@ function Shop({ addToCart, user }) {
         {/* Route for Shop */}
         <Route
           path="/shop"
-          element={<FilterAll addToCart={addToCart} user={user} />}
+          element={
+            <FilterAll
+              addToCart={addToCart}
+              user={user}
+              cartItems={cartItems}
+            />
+          }
         />
       </Routes>
     </div>
