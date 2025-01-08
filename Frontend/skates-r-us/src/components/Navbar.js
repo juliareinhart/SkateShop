@@ -40,26 +40,40 @@ function Navbar({ user, onLogout }) {
           </div>
           <div className="offcanvas-body">
             <ul className="navbar-nav justify-content-end flex-grow-1 pe-3">
+              {user && (
+                <li className="nav-item">
+                  <span className="nav-link">Welcome, {user.firstName}</span>{" "}
+                  {/* Display user email */}
+                </li>
+              )}
               <li className="nav-item">
                 <Link className="nav-link" aria-current="page" to="/">
                   Home
                 </Link>
               </li>
+              {!user && (
+                <Link className="nav-link" to="/login">
+                  Login
+                </Link>
+              )}
               <li className="nav-item">
                 <Link className="nav-link" to="/shop">
                   Shop
                 </Link>
               </li>
               <li className="nav-item">
-                <Link className="nav-link" to="/AIChat">
-                  AI Chat
+                <Link className="nav-link" to="/cart">
+                  Cart
                 </Link>
               </li>
               <li className="nav-item">
-                {user ? (
+                <Link className="nav-link" to="/AIChat">
+                  Chat
+                </Link>
+              </li>
+              <li className="nav-item">
+                {user && (
                   <>
-                    <span className="nav-link">Welcome, {user.firstName}</span>{" "}
-                    {/* Display user email */}
                     <button
                       className="btn btn-link nav-link"
                       onClick={onLogout}
@@ -68,17 +82,7 @@ function Navbar({ user, onLogout }) {
                       Log Out
                     </button>
                   </>
-                ) : (
-                  <Link className="nav-link" to="/login">
-                    Login
-                  </Link>
                 )}
-              </li>
-
-              <li className="nav-item">
-                <Link className="nav-link" to="/cart">
-                  Cart
-                </Link>
               </li>
             </ul>
           </div>
