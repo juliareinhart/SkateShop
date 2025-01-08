@@ -1,0 +1,21 @@
+.cart-item-title {
+  flex: 1;
+  min-width: 200px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.list-group-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+button {
+  vertical-align: middle;
+}
+
+/* .remove-btn {
+ vertical-align: middle; /* Optional customization for Remove button */
+/*} */
