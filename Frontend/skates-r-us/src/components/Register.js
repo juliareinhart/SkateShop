@@ -59,7 +59,14 @@ function Register() {
       .then((response) => {
         console.log("Response:", response.data);
         setStatus("User successfully registered!");
-
+        // Clear input fields
+        setFormData({
+          firstName: "",
+          lastName: "",
+          email: "",
+          password: "",
+          role: "user",
+        });
         // Delay navigation by 1 second (1000 ms)
         setTimeout(() => {
           navigate("/login");
@@ -104,6 +111,7 @@ function Register() {
           placeholder="Email Address"
           value={formData.email}
           onChange={handleChange}
+          autocomplete="email"
           required
         />
         <input
