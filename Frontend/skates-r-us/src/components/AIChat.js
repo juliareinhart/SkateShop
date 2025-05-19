@@ -85,19 +85,20 @@ const AIChat = () => {
                           <br />
                           <strong>Rating:</strong> {product.rating} ⭐<br />
                           {product.skillLevel?.[0] && (
-                            <p>
+                            <>
                               <strong>Skill Level:</strong>{" "}
                               {product.skillLevel[0].charAt(0).toUpperCase() +
                                 product.skillLevel[0].slice(1)}
-                            </p>
+                              <br />
+                            </>
                           )}
-                          <br />
                           {product.wheelType?.[0] && (
-                            <p>
+                            <>
                               <strong>Wheel Type:</strong>{" "}
                               {product.wheelType[0].charAt(0).toUpperCase() +
                                 product.wheelType[0].slice(1)}
-                            </p>
+                              <br />
+                            </>
                           )}
                         </p>
                       </div>
