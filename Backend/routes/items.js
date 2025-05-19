@@ -17,6 +17,8 @@ const items = [
     title: "Impala White Quad Skates",
     quantity: 12,
     typeOfItem: "skates",
+    gender: ["feminine", "female", "women", "woman", "wife", "girlfriend"],
+    skillLevel: ["beginner", "new", "first time"],
   },
   {
     brand: "Sure-Grip",
@@ -27,6 +29,8 @@ const items = [
     title: "Sure-Grip Fame Pink Skates",
     quantity: 7,
     typeOfItem: "skates",
+    gender: ["feminine", "female", "women", "woman", "wife", "girlfriend"],
+    skillLevel: ["intermediate", "medium", "novice"],
   },
   {
     brand: "Chaya",
@@ -38,6 +42,16 @@ const items = [
     title: "Chaya Classic Black Skates",
     quantity: 5,
     typeOfItem: "skates",
+    gender: ["masculine", "male", "man", "men", "boyfriend", "husband"],
+    skillLevel: [
+      "advanced",
+      "years of experience",
+      "competition",
+      "compete",
+      "years",
+      "professional",
+      "perform",
+    ],
   },
   {
     brand: "Moxi",
@@ -48,6 +62,16 @@ const items = [
     title: "Moxi Leopard Print Skates",
     quantity: 6,
     typeOfItem: "skates",
+    gender: ["feminine", "female", "women", "woman", "wife", "girlfriend"],
+    skillLevel: [
+      "advanced",
+      "years of experience",
+      "competition",
+      "compete",
+      "years",
+      "professional",
+      "perform",
+    ],
   },
   {
     brand: "BTFL",
@@ -58,6 +82,8 @@ const items = [
     title: "BTFL Mint Quad Skates",
     quantity: 10,
     typeOfItem: "skates",
+    skillLevel: ["beginner", "new", "first time"],
+    gender: ["feminine", "female", "women", "woman", "wife", "girlfriend"],
   },
   {
     brand: "Rio Roller",
@@ -69,6 +95,8 @@ const items = [
     title: "Rio Roller Blue Quad Skates",
     quantity: 8,
     typeOfItem: "skates",
+    skillLevel: ["beginner", "new", "first time"],
+    gender: ["feminine", "female", "women", "woman", "wife", "girlfriend"],
   },
   {
     brand: "Candi Girl",
@@ -79,6 +107,8 @@ const items = [
     title: "Candi Girl Purple Skates",
     quantity: 9,
     typeOfItem: "skates",
+    gender: ["feminine", "female", "women", "woman", "wife", "girlfriend"],
+    skillLevel: ["beginner", "new", "first time"],
   },
   {
     brand: "Riedell",
@@ -89,6 +119,16 @@ const items = [
     title: "Riedell Teal Quad Skates",
     quantity: 4,
     typeOfItem: "skates",
+    gender: ["feminine", "female", "women", "woman", "wife", "girlfriend"],
+    skillLevel: [
+      "advanced",
+      "years of experience",
+      "competition",
+      "compete",
+      "years",
+      "professional",
+      "perform",
+    ],
   },
   {
     brand: "Roller Derby",
@@ -99,6 +139,16 @@ const items = [
     title: "Roller Derby Firestar Skates",
     quantity: 12,
     typeOfItem: "skates",
+    gender: ["feminine", "female", "women", "woman", "wife", "girlfriend"],
+    skillLevel: [
+      "advanced",
+      "years of experience",
+      "competition",
+      "compete",
+      "years",
+      "professional",
+      "perform",
+    ],
   },
   {
     brand: "Sure-Grip",
@@ -109,6 +159,16 @@ const items = [
     title: "Sure-Grip Stardust Black and Red Skates",
     quantity: 5,
     typeOfItem: "skates",
+    gender: ["masculine", "male", "man", "men", "boyfriend", "husband"],
+    skillLevel: [
+      "advanced",
+      "years of experience",
+      "competition",
+      "compete",
+      "years",
+      "professional",
+      "perform",
+    ],
   },
   {
     brand: "Riedell",
@@ -119,6 +179,16 @@ const items = [
     title: "Riedell Whiteout Quad Skates",
     quantity: 3,
     typeOfItem: "skates",
+    gender: ["feminine", "female", "women", "woman", "wife", "girlfriend"],
+    skillLevel: [
+      "advanced",
+      "years of experience",
+      "competition",
+      "compete",
+      "years",
+      "professional",
+      "perform",
+    ],
   },
   {
     brand: "Chaya",
@@ -130,6 +200,8 @@ const items = [
     title: "Chaya Melrose Purple Skates",
     quantity: 7,
     typeOfItem: "skates",
+    skillLevel: ["intermediate"],
+    gender: ["masculine", "male", "man", "men", "boyfriend", "husband"],
   },
   {
     brand: "Moxi",
@@ -140,6 +212,16 @@ const items = [
     title: "Moxi Lolly Purple Skates",
     quantity: 9,
     typeOfItem: "skates",
+    gender: ["feminine", "female", "women", "woman", "wife", "girlfriend"],
+    skillLevel: [
+      "advanced",
+      "years of experience",
+      "competition",
+      "compete",
+      "years",
+      "professional",
+      "perform",
+    ],
   },
   {
     brand: "Rio Roller",
@@ -150,6 +232,8 @@ const items = [
     title: "Rio Roller Black Quad Skates",
     quantity: 6,
     typeOfItem: "skates",
+    gender: ["masculine", "male", "man", "men", "boyfriend", "husband"],
+    skillLevel: ["beginner", "new", "first time"],
   },
   {
     brand: "Impala",
@@ -160,6 +244,8 @@ const items = [
     title: "Impala Holographic Quad Skates",
     quantity: 10,
     typeOfItem: "skates",
+    gender: ["feminine", "female", "women", "woman", "wife", "girlfriend"],
+    skillLevel: ["beginner", "new", "first time"],
   },
 
   // Wheels
@@ -172,6 +258,8 @@ const items = [
     title: "Radar Energy 65mm Wheels",
     quantity: 15,
     typeOfItem: "wheels",
+    gender: ["feminine", "female", "women", "woman", "wife", "girlfriend"],
+    wheelType: ["indoor"],
   },
   {
     brand: "Sure-Grip",
@@ -183,6 +271,8 @@ const items = [
     title: "Sure-Grip Zoom Green Wheels",
     quantity: 20,
     typeOfItem: "wheels",
+    gender: ["masculine", "male", "man", "men", "boyfriend", "husband"],
+    wheelType: ["indoor"],
   },
   {
     brand: "Moxi",
@@ -193,6 +283,8 @@ const items = [
     title: "Moxi Red Outdoor Wheels",
     quantity: 18,
     typeOfItem: "wheels",
+    gender: ["masculine", "male", "man", "men", "boyfriend", "husband"],
+    wheelType: ["outdoor"],
   },
   {
     brand: "Atom",
@@ -203,6 +295,8 @@ const items = [
     title: "Atom Pulse Blue Wheels",
     quantity: 12,
     typeOfItem: "wheels",
+    gender: ["masculine", "male", "man", "men", "boyfriend", "husband"],
+    wheelType: ["outdoor"],
   },
   {
     brand: "Rollerbones",
@@ -213,6 +307,8 @@ const items = [
     title: "Rollerbones Pink Wheels",
     quantity: 14,
     typeOfItem: "wheels",
+    gender: ["feminine", "female", "women", "woman", "wife", "girlfriend"],
+    wheelType: ["outdoor"],
   },
 ];
 

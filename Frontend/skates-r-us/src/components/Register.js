@@ -6,7 +6,7 @@ function Register() {
   const navigate = useNavigate(); // Initialize navigate
   const [showAdminPassword, setShowAdminPassword] = useState(false);
   const [adminPassword, setAdminPassword] = useState("");
-  const SECUREADMINPASSWORD = "sk8r4ever"; //secure admin password
+  const SECUREADMINPASSWORD = process.env.REACT_APP_ADMIN_PASSWORD; //secure admin password
 
   // State to manage form data
   const [formData, setFormData] = useState({

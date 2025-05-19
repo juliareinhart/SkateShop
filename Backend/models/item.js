@@ -11,6 +11,9 @@ const itemSchema = new mongoose.Schema({
   title: { type: String, required: true },
   quantity: { type: Number, required: true },
   typeOfItem: { type: String, required: true },
+  skillLevel: [String],
+  gender: [String],
+  wheelType: [String],
 });
 
 // STEP 3 - CREATE THE MODEL
