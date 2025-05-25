@@ -96,4 +96,3 @@ Math graduate, self-taught MERN developer, JavaFX and MySQL and passionate about
 🔗 [Connect with me on LinkedIn](https://www.linkedin.com/in/julia-reinhart-798aa6258/)
 
 
-
