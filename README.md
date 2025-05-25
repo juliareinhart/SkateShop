@@ -26,7 +26,7 @@ A full-stack MERN e-commerce application where users can browse and shop for rol
 
 ## 🧪 Demo
 
-- 📹 [YouTube Demo](https://your-youtube-link.com)
+- 📹 [YouTube Demo]([https://your-youtube-link.com](https://youtu.be/MbjVxq_bwhU))
 - 🔗 [Live Site Coming Soon]
 
 ---
