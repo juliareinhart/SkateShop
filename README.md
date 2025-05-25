@@ -87,6 +87,7 @@ npm start
 
 ### 5. 📂 Folder Structure
 
+```bash
 skates-r-us/
 ├── backend/
 │   ├── routes/
@@ -96,6 +97,7 @@ skates-r-us/
 │   ├── src/
 │   └── .env
 └── README.md
+```
 
 ## 🙋 About Me
 
