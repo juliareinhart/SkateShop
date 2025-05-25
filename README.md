@@ -40,14 +40,17 @@ A full-stack MERN e-commerce application where users can browse and shop for rol
 ```bash
 git clone https://github.com/your-username/skates-r-us.git
 cd skates-r-us
+```
 
 ### 2. Install Dependencies
 
+```bash
 cd backend
 npm install
 
 cd ../frontend
 npm install
+```
 
 
 ### 3. Create Environment Files
