@@ -93,8 +93,6 @@ skates-r-us/
 👩‍💻 Built with 💖 by **Julia Reinhart** –  
 Math graduate, self-taught MERN developer, JavaFX and MySQL and passionate about creating accessible tools that are smart and beautiful.
 
-[LinkedIn](https://linkedin.com/in/juliareinhart)
-
 🔗 [Connect with me on LinkedIn](https://www.linkedin.com/in/julia-reinhart-798aa6258/)
 
 
