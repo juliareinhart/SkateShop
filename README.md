@@ -57,27 +57,33 @@ npm install
 
 Create a .env file in the backend folder:
 
+```bash
 DATABASE=mongodb+srv://<your-mongo-uri>
 JWT_KEY=yourSecretKey
 OPENAI_API_KEY=yourOpenAIKey
+```
 
 Create a .env file in the frontend folder:
 
+```bash
 REACT_APP_API_BASE=http://localhost:9000
-
+```
 
 ### 4. Run the App
 
 Start the backend:
 
+```bash
 cd backend
 npm start
+```
 
 Start the frontend:
 
+```bash
 cd ../frontend
 npm start
-
+```
 
 ### 5. 📂 Folder Structure
 
